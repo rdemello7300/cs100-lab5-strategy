@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <iostream>
+using namespace std;
 
 Spreadsheet::~Spreadsheet()
 {
@@ -21,6 +22,19 @@ void Spreadsheet::clear()
     data.clear();
     delete select;
     select = nullptr;
+}
+
+void Spreadsheet:: print_selection(std::ostream& out) const
+{
+    for( int i = 0; i < data.size(); i++)
+    {
+	for(int k = 0; k < column_names.size(); k++)
+	{
+	   cout << cell_data(i, k) << " ";
+	}
+	cout << endl;
+    }
+
 }
 
 void Spreadsheet::set_column_names(const std::vector<std::string>& names)
