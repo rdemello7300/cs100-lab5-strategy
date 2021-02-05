@@ -38,4 +38,18 @@ public:
     virtual bool select(const std::string& s) const = 0;
 };
 
+class Select_Contains: public Select_Column
+{
+protected:
+   std::string roww;
+public:
+   Select_Contains(const Spreadsheet* sheet, const std::string& c, const std::string& r):Select_Column(sheet,c), roww(r) { }
+
+   virtual bool select(const std::string& s) const
+   {
+	if(roww == s) return true;
+	return false;	
+   }
+};
+
 #endif //__SELECT_HPP__
