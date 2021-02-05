@@ -26,6 +26,7 @@ void Spreadsheet::clear()
 
 void Spreadsheet:: print_selection(std::ostream& out) const
 {
+  if(select == NULL){
     for( int i = 0; i < data.size(); i++)
     {
 	for(int k = 0; k < column_names.size(); k++)
@@ -34,6 +35,19 @@ void Spreadsheet:: print_selection(std::ostream& out) const
 	}
 	cout << endl;
     }
+  }
+  else
+  {
+    for(int i = 0; i < data.size(); i++){
+	if(select -> select(this, i)){
+	for(int k = 0; k < column_names.size(); k++){
+	
+	  cout << cell_data(i, k) << " ";
+	}
+	cout << endl;
+}
+    }
+  }
 
 }
 
