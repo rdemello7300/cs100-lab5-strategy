@@ -52,4 +52,20 @@ public:
    }
 };
 
+class Select_Not: public Select_Column
+{
+protected:
+   std::string row;
+public:
+   Select_Not(Select* selectObj1, Select* selectObj2)
+   {
+	
+   }
+   
+   virtual bool select(const std::string& s) const
+   {
+	if(row
+   }
+};
+
 #endif //__SELECT_HPP__
