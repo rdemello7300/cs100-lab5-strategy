@@ -71,4 +71,23 @@ public:
    }
 
 };
+
+class Select_Or: public Select
+{
+protected:
+   Select* obj1 = NULL;
+   Select* obj2 = NULL;
+public:
+   Select_Or(Select* selectObj1, Select* selectObj2)
+   {
+	obj1 = selectObj1;
+        obj2 = selectObj2;
+   }
+
+   bool select(const Spreadsheet* sheet, int row) const
+   {
+	if(obj1 -> select(sheet, row) == true || obj2 -> select(sheet,row) == true) return true;
+	return false;
+   }
+};
 #endif //__SELECT_HPP__
