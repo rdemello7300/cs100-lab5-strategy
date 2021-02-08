@@ -41,15 +41,34 @@ public:
 class Select_Contains: public Select_Column
 {
 protected:
-   std::string roww;
+   std::string givenName;
 public:
-   Select_Contains(const Spreadsheet* sheet, const std::string& c, const std::string& r):Select_Column(sheet,c), roww(r) { }
+   Select_Contains(const Spreadsheet* sheet, const std::string& c, const std::string& r):Select_Column(sheet,c), givenName(r) { }
 
    virtual bool select(const std::string& s) const
    {
-	if(roww == s) return true;
+	if(s.find(givenName)!= std::string::npos) return true;
 	return false;	
    }
 };
 
+class Select_And: public Select
+{
+protected:
+   Select* obj1 = NULL;
+   Select* obj2 = NULL;
+public: 
+   Select_And(Select* selectObj1, Select* selectObj2)
+   {
+      obj1 = selectObj1;
+      obj2 = selectObj2;
+   } 
+
+   bool select(const Spreadsheet* sheet, int row) const  //const std::string& s
+   {
+	if(obj1 -> select(sheet, row) == true &&  obj2 -> select(sheet, row) == true) return true;
+	return false;	
+   }
+
+};
 #endif //__SELECT_HPP__
