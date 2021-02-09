@@ -25,7 +25,7 @@ void Spreadsheet::clear()
     select = nullptr;
 }
 
-void Spreadsheet:: print_selection(std::ostream& out) const
+void Spreadsheet:: print_selection(std::ostream& cout) const
 {
   if(select == NULL){
     for( int i = 0; i < data.size(); i++)
