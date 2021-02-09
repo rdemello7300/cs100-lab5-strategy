@@ -90,4 +90,20 @@ public:
 	return false;
    }
 };
+
+class Select_Not: public Select
+{
+    protected:
+        Select* obj = NULL;
+    public:
+        Select_Not(Select* selectObj)
+        {
+            obj = selectObj;
+        }
+    bool select(const Spreadsheet* sheet, int row) const
+    {
+        if(obj -> select(sheet, row) == true) return false;
+        else return true;
+    }
+};
 #endif //__SELECT_HPP__
