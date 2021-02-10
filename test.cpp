@@ -336,7 +336,28 @@ TEST(Similarities2, AlmostSameInput2){
    EXPECT_EQ(ss.str(), oss.str());
 }
 
+TEST(NullTest, testingNoInput){
+   Spreadsheet sheet;
+   sheet.set_column_names({"Animal"});
+   sheet.add_row({"cat"});
+   sheet.add_row({"dog"});
+   sheet.add_row({"bird"});
 
+   Spreadsheet checker;
+   checker.set_column_names({"Animal"});
+   checker.add_row({"cat"});
+   checker.add_row({"dog"});
+   checker.add_row({"bird"});
+
+
+   std::stringstream ss;
+
+   sheet.set_selection(new Select_Contains(&sheet, "Animal", ""));
+   std::stringstream oss;
+   sheet.print_selection(oss);
+   checker.print_selection(ss);
+   EXPECT_EQ(ss.str(), oss.str());
+}
 
 
 
