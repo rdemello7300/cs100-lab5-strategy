@@ -64,7 +64,7 @@ public:
       obj2 = selectObj2;
    } 
 
-   bool select(const Spreadsheet* sheet, int row) const  //const std::string& s
+   virtual bool select(const Spreadsheet* sheet, int row) const  //const std::string& s
    {
 	if(obj1 -> select(sheet, row) == true &&  obj2 -> select(sheet, row) == true) return true;
 	return false;	
@@ -84,7 +84,7 @@ public:
         obj2 = selectObj2;
    }
 
-   bool select(const Spreadsheet* sheet, int row) const
+   virtual bool select(const Spreadsheet* sheet, int row) const
    {
 	if(obj1 -> select(sheet, row) == true || obj2 -> select(sheet,row) == true) return true;
 	return false;
@@ -100,7 +100,7 @@ class Select_Not: public Select
         {
             obj = selectObj;
         }
-    bool select(const Spreadsheet* sheet, int row) const
+    virtual bool select(const Spreadsheet* sheet, int row) const
     {
         if(obj -> select(sheet, row) == true) return false;
         else return true;
