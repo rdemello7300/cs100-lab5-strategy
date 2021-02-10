@@ -47,7 +47,7 @@ public:
 
    virtual bool select(const std::string& s) const
    {
-	if(s.find(givenName)!= std::string::npos) return true;
+	if(givenName.empty() || s.find(givenName)!= std::string::npos) return true;
 	return false;	
    }
 };
