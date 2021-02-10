@@ -62,7 +62,13 @@ public:
    {
       obj1 = selectObj1;
       obj2 = selectObj2;
-   } 
+   }
+
+   ~Select_And()
+   {  
+	delete obj1;
+	delete obj2;
+   }  
 
    virtual bool select(const Spreadsheet* sheet, int row) const  //const std::string& s
    {
@@ -84,6 +90,12 @@ public:
         obj2 = selectObj2;
    }
 
+   ~Select_Or()
+   {
+	delete obj1;
+	delete obj2;
+   }
+
    virtual bool select(const Spreadsheet* sheet, int row) const
    {
 	if(obj1 -> select(sheet, row) == true || obj2 -> select(sheet,row) == true) return true;
@@ -93,17 +105,23 @@ public:
 
 class Select_Not: public Select
 {
-    protected:
-        Select* obj = NULL;
-    public:
-        Select_Not(Select* selectObj)
-        {
-            obj = selectObj;
-        }
-    virtual bool select(const Spreadsheet* sheet, int row) const
-    {
+protected:
+   Select* obj = NULL;
+public:
+   Select_Not(Select* selectObj)
+   {
+	obj = selectObj;
+   }
+
+   ~Select_Not()
+   {
+	delete obj;
+   }
+
+   virtual bool select(const Spreadsheet* sheet, int row) const
+   {
         if(obj -> select(sheet, row) == true) return false;
         else return true;
-    }
+   }
 };
 #endif //__SELECT_HPP__
